@@ -1,16 +1,16 @@
-#define a 7
-#define b 8
-#define c 9
-#define lm1 10
-#define lm2 11
-#define rm1 12
-#define rm2 5
+#define a 7//IR module out
+#define b 8//+5 V Vcc output
+#define c 9//IR module out
+#define lm1 10//left motor1
+#define lm2 11//left motor2
+#define rm1 12//right motor1
+#define rm2 5//right motor2
 void setup() {
   // put your setup code here, to run once:
 Serial.begin(9600);
-pinMode(7,INPUT);
-pinMode(9,INPUT);
-pinMode(8,OUTPUT);
+pinMode(a,INPUT);
+pinMode(c,INPUT);
+pinMode(b,OUTPUT);
 pinMode(lm1,OUTPUT);
 pinMode(lm2,OUTPUT);
 pinMode(rm1,OUTPUT);
@@ -21,7 +21,6 @@ digitalWrite(b,HIGH);
 void loop() {
   int i1=digitalRead(a);//left
   int i2=digitalRead(c);//right
-  Serial.print(i1+i2);
   if(i1==0 && i2==0)
   {
     fwd();Serial.println("fwd");
@@ -41,9 +40,9 @@ void loop() {
 }
 void fwd()
 {
-  analogWrite(lm1,170);
+  analogWrite(lm1,160);
   analogWrite(lm2,0);
-  analogWrite(rm1,170);
+  analogWrite(rm1,140);
   analogWrite(rm2,0);
 }
 void lft()
